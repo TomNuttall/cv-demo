@@ -1,0 +1,30 @@
+.skills {
+  h3 {
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+
+    font-size: 1rem !important;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0.25rem 0 1rem 1.1rem !important;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.3rem;
+    row-gap: 0.6rem;
+  }
+}
+
+.skills__icon {
+  display: inline-block;
+}
+
+.skills__item {
+  border: 1px solid #666666;
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem;
+  color: #666666;
+  font-size: 0.95rem;
+}

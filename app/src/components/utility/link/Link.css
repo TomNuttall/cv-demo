@@ -1,0 +1,12 @@
+.link {
+  display: inline-block;
+
+  a {
+    font-size: 1rem;
+  }
+
+  & svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}

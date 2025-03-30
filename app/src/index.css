@@ -1,0 +1,26 @@
+:root {
+  font-family: Arial;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #213547;
+  background-color: #edf2f4;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media print {
+    background-color: white;
+    font-size: 13px;
+
+    header {
+      display: none;
+    }
+  }
+}
+
+body {
+  margin: 0;
+}

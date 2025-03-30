@@ -1,0 +1,14 @@
+.education__summary {
+  padding-bottom: 0.5rem;
+}
+
+.education__place {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  column-gap: 0.25rem;
+}
+
+.education__date {
+  width: 7rem;
+}

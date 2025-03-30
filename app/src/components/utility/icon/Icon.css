@@ -1,0 +1,12 @@
+.icon {
+  display: flex;
+  align-items: center;
+  column-gap: 0.3rem;
+  font-size: 0.9rem;
+  color: #666666;
+
+  & svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+}

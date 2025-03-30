@@ -1,0 +1,35 @@
+.employment__summary {
+  padding-bottom: 0.5rem;
+}
+
+.employment__about {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  column-gap: 0.25rem;
+}
+
+.employment__date {
+  width: 7rem;
+}
+
+.employment__projects {
+  padding-top: 0.75rem;
+
+  h4 {
+    color: #555555;
+    font-size: 0.95rem;
+    font-weight: 700 !important;
+    padding-bottom: 0.25rem;
+    padding-left: 1.1rem;
+  }
+
+  ul {
+    list-style: circle;
+  }
+
+  p {
+    display: inline;
+    margin: 0 !important;
+  }
+}

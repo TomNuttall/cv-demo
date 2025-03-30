@@ -1,0 +1,55 @@
+.cv {
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+  }
+
+  h1 {
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding: 1rem 0 0.25rem 0;
+    text-transform: uppercase;
+    border-bottom: 1px solid #333333;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    color: #333333;
+  }
+
+  h4 {
+    font-weight: normal;
+  }
+
+  p {
+    margin: 0.25rem 0;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  a {
+    color: #5448c8;
+    text-underline-offset: 10%;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:visited {
+      color: #5448c8;
+    }
+  }
+}
+
+.subsection {
+  padding-bottom: 1.5rem;
+}
