@@ -15,7 +15,8 @@
     background-color: white;
     font-size: 13px;
 
-    header {
+    header,
+    .actions {
       display: none;
     }
   }

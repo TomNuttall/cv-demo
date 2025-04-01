@@ -27,7 +27,7 @@ Github actions used for CI/CD
 | Name                | Reason                 |
 | ------------------- | ---------------------- |
 | AWS_LAMBDA_ROLE_ARN | Role for lambda deploy |
-| AWS_LAMBDA          | Lambda                 |
+| AWS_LAMBDA_NAME     | Lambda name            |
 
 ## Cloudfront Redirect
 

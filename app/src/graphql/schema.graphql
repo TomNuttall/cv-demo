@@ -42,6 +42,6 @@ type CoveringLetter {
 }
 
 type Query {
-  getCV: CV
-  getCoveringLetter: CoveringLetter
+  getCV(id: String): CV
+  getCoveringLetter(id: String): CoveringLetter
 }

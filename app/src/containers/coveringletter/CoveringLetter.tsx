@@ -4,8 +4,14 @@ import { GET_COVERINGLETTER } from '../../graphql/queries'
 
 import './CoveringLetter.css'
 
-const CoveringLetter: React.FC = () => {
-  const { data, loading, error } = useQuery(GET_COVERINGLETTER)
+type CoveringLetterProps = {
+  id?: string
+}
+
+const CoveringLetter: React.FC<CoveringLetterProps> = ({ id }) => {
+  const { data, loading, error } = useQuery(GET_COVERINGLETTER, {
+    variables: { id },
+  })
 
   if (loading) return <span>Loading...</span>
   if (error) return <span>Error</span>
