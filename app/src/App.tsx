@@ -7,8 +7,6 @@ import CoveringLetter from './containers/coveringletter'
 import CV from './containers/cv'
 import Header from './components/header'
 
-import profile from './assets/data/profile.json'
-
 import './App.css'
 
 const LINKS = [
@@ -19,13 +17,11 @@ const LINKS = [
 function App() {
   const contentRef = useRef<HTMLDivElement>(null)
   const reactToPrintFn = useReactToPrint({ contentRef })
-  const { name } = profile
-
   return (
     <div className="app">
       <ApolloClientProvider>
         <BrowserRouter basename="/projects/cv-template">
-          <Header links={LINKS} name={name}>
+          <Header links={LINKS} name="C V">
             <button className="app__print" onClick={() => reactToPrintFn()}>
               Save PDF
             </button>

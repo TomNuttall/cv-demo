@@ -1,0 +1,47 @@
+type Profile {
+  name: String
+  email: String!
+  github: String!
+  about: String!
+}
+
+type Employment {
+  company: String!
+  location: String!
+  projectType: String!
+  projectDetails: [String!]!
+  role: String!
+  roleDetails: [String!]!
+  yearFrom: String!
+  yearTo: String
+}
+
+type Education {
+  course: String!
+  courseDetails: [String!]!
+  school: String!
+  yearFrom: String!
+  yearTo: String
+}
+
+type Skills {
+  languages: [String!]!
+  tools: [String!]!
+  certificates: [String!]!
+}
+
+type CV {
+  profile: Profile!
+  employment: [Employment!]!
+  education: [Education!]!
+  skills: Skills!
+}
+
+type CoveringLetter {
+  letter: [String!]!
+}
+
+type Query {
+  getCV(id: String): CV
+  getCoveringLetter(id: String): CoveringLetter
+}

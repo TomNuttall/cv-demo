@@ -9,7 +9,7 @@ import {
 
 const httpLink = new HttpLink({
   uri: import.meta.env.PROD
-    ? 'http://localhost:3000/graphql'
+    ? 'https://62wua3gtij.execute-api.eu-west-2.amazonaws.com/graphql'
     : 'http://localhost:3000/graphql',
 })
 

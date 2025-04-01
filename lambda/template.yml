@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  HttpApi:
+    CorsConfiguration:
+      AllowHeaders:
+        - Content-Type
+        - Authorization
+        - Access-Control-Allow-Origin
+      AllowMethods:
+        - 'GET'
+        - 'POST'
+        - 'OPTIONS'
+      AllowOrigins:
+        - '*'
+
+Resources:
+  Lambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs20.x
+      CodeUri: ./dist
+      MemorySize: 128
+      Timeout: 10
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Events:
+        Get:
+          Type: HttpApi
+          Properties:
+            Path: /graphql
+            Method: GET
+
+        Post:
+          Type: HttpApi
+          Properties:
+            Path: /graphql
+            Method: POST

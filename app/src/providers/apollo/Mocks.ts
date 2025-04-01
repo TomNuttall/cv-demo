@@ -3,11 +3,11 @@ import { MockedResponse } from '@apollo/client/testing'
 import { GET_CV, GET_COVERINGLETTER } from '../../graphql/queries'
 import { GetCvQuery, GetCoveringLetterQuery } from '../../__generated__/graphql'
 
-import education from './data/education.json'
-import employment from './data/employement.json'
-import profile from './data/profile.json'
-import skills from './data/skills.json'
-import coveringletter from './data/covering-letter.json'
+import education from './fixtures/education'
+import employment from './fixtures/employement'
+import profile from './fixtures/profile'
+import skills from './fixtures/skills'
+import letter from './fixtures/covering-letter'
 
 export const getCVMock: MockedResponse<GetCvQuery> = {
   request: {
@@ -32,7 +32,7 @@ export const getCoveringLetterMock: MockedResponse<GetCoveringLetterQuery> = {
   result: {
     data: {
       getCoveringLetter: {
-        letter: coveringletter,
+        letter,
       },
     },
   },
