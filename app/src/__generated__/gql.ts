@@ -14,12 +14,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n  query GetCV {\n    getCV {\n      profile {\n        name\n        email\n        github\n        about\n      }\n      employment {\n        company\n        location\n        projectType\n        projectDetails\n        role\n        roleDetails\n        yearFrom\n        yearTo\n      }\n      education {\n        course\n        courseDetails\n        school\n        yearFrom\n        yearTo\n      }\n      skills {\n        languages\n        tools\n        certificates\n      }\n    }\n  }\n": typeof types.GetCvDocument,
-    "\n  query GetCoveringLetter {\n    getCoveringLetter {\n      letter\n    }\n  }\n": typeof types.GetCoveringLetterDocument,
+    "\n  query GetCV($id: String) {\n    getCV(id: $id) {\n      profile {\n        name\n        email\n        github\n        about\n      }\n      employment {\n        company\n        location\n        projectType\n        projectDetails\n        role\n        roleDetails\n        yearFrom\n        yearTo\n      }\n      education {\n        course\n        courseDetails\n        school\n        yearFrom\n        yearTo\n      }\n      skills {\n        languages\n        tools\n        certificates\n      }\n    }\n  }\n": typeof types.GetCvDocument,
+    "\n  query GetCoveringLetter($id: String) {\n    getCoveringLetter(id: $id) {\n      letter\n    }\n  }\n": typeof types.GetCoveringLetterDocument,
 };
 const documents: Documents = {
-    "\n  query GetCV {\n    getCV {\n      profile {\n        name\n        email\n        github\n        about\n      }\n      employment {\n        company\n        location\n        projectType\n        projectDetails\n        role\n        roleDetails\n        yearFrom\n        yearTo\n      }\n      education {\n        course\n        courseDetails\n        school\n        yearFrom\n        yearTo\n      }\n      skills {\n        languages\n        tools\n        certificates\n      }\n    }\n  }\n": types.GetCvDocument,
-    "\n  query GetCoveringLetter {\n    getCoveringLetter {\n      letter\n    }\n  }\n": types.GetCoveringLetterDocument,
+    "\n  query GetCV($id: String) {\n    getCV(id: $id) {\n      profile {\n        name\n        email\n        github\n        about\n      }\n      employment {\n        company\n        location\n        projectType\n        projectDetails\n        role\n        roleDetails\n        yearFrom\n        yearTo\n      }\n      education {\n        course\n        courseDetails\n        school\n        yearFrom\n        yearTo\n      }\n      skills {\n        languages\n        tools\n        certificates\n      }\n    }\n  }\n": types.GetCvDocument,
+    "\n  query GetCoveringLetter($id: String) {\n    getCoveringLetter(id: $id) {\n      letter\n    }\n  }\n": types.GetCoveringLetterDocument,
 };
 
 /**
@@ -39,11 +39,11 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GetCV {\n    getCV {\n      profile {\n        name\n        email\n        github\n        about\n      }\n      employment {\n        company\n        location\n        projectType\n        projectDetails\n        role\n        roleDetails\n        yearFrom\n        yearTo\n      }\n      education {\n        course\n        courseDetails\n        school\n        yearFrom\n        yearTo\n      }\n      skills {\n        languages\n        tools\n        certificates\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetCV {\n    getCV {\n      profile {\n        name\n        email\n        github\n        about\n      }\n      employment {\n        company\n        location\n        projectType\n        projectDetails\n        role\n        roleDetails\n        yearFrom\n        yearTo\n      }\n      education {\n        course\n        courseDetails\n        school\n        yearFrom\n        yearTo\n      }\n      skills {\n        languages\n        tools\n        certificates\n      }\n    }\n  }\n"];
+export function gql(source: "\n  query GetCV($id: String) {\n    getCV(id: $id) {\n      profile {\n        name\n        email\n        github\n        about\n      }\n      employment {\n        company\n        location\n        projectType\n        projectDetails\n        role\n        roleDetails\n        yearFrom\n        yearTo\n      }\n      education {\n        course\n        courseDetails\n        school\n        yearFrom\n        yearTo\n      }\n      skills {\n        languages\n        tools\n        certificates\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetCV($id: String) {\n    getCV(id: $id) {\n      profile {\n        name\n        email\n        github\n        about\n      }\n      employment {\n        company\n        location\n        projectType\n        projectDetails\n        role\n        roleDetails\n        yearFrom\n        yearTo\n      }\n      education {\n        course\n        courseDetails\n        school\n        yearFrom\n        yearTo\n      }\n      skills {\n        languages\n        tools\n        certificates\n      }\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GetCoveringLetter {\n    getCoveringLetter {\n      letter\n    }\n  }\n"): (typeof documents)["\n  query GetCoveringLetter {\n    getCoveringLetter {\n      letter\n    }\n  }\n"];
+export function gql(source: "\n  query GetCoveringLetter($id: String) {\n    getCoveringLetter(id: $id) {\n      letter\n    }\n  }\n"): (typeof documents)["\n  query GetCoveringLetter($id: String) {\n    getCoveringLetter(id: $id) {\n      letter\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

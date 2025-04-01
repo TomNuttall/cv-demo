@@ -14,11 +14,20 @@ yarn cdk deploy --all
 
 Github actions used for CI/CD
 
+### Frontend
+
 | Name                | Reason                                         |
 | ------------------- | ---------------------------------------------- |
 | AWS_BUCKET_ROLE_ARN | Role for put/delete S3 + invalidate Cloudfront |
 | AWS_BUCKET_PATH     | S3 bucket uri                                  |
 | AWS_DISTRIBUTION_ID | Cloudfront id                                  |
+
+### Backend
+
+| Name                | Reason                 |
+| ------------------- | ---------------------- |
+| AWS_LAMBDA_ROLE_ARN | Role for lambda deploy |
+| AWS_LAMBDA_NAME     | Lambda name            |
 
 ## Cloudfront Redirect
 

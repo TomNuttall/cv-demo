@@ -1,35 +1,29 @@
-// import { useMemo } from 'react'
-// import {
-//   ApolloClient,
-//   ApolloProvider,
-//   InMemoryCache,
-//   from,
-//   HttpLink,
-// } from '@apollo/client'
-import { MockedProvider } from '@apollo/client/testing'
-import { getCVMock, getCoveringLetterMock } from './Mocks'
+import { useMemo } from 'react'
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  from,
+  HttpLink,
+} from '@apollo/client'
 
-// const httpLink = new HttpLink({
-//   uri: 'http://localhost:3000/graphql/',
-// })
+const httpLink = new HttpLink({
+  uri: import.meta.env.PROD
+    ? 'https://62wua3gtij.execute-api.eu-west-2.amazonaws.com/graphql'
+    : 'http://localhost:3000/graphql',
+})
 
 const ApolloClientProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  // const client = useMemo(() => {
-  //   return new ApolloClient({
-  //     link: from([httpLink]),
-  //     cache: new InMemoryCache({}),
-  //   })
-  // }, [])
+  const client = useMemo(() => {
+    return new ApolloClient({
+      link: from([httpLink]),
+      cache: new InMemoryCache({}),
+    })
+  }, [])
 
-  const mocks = [getCVMock, getCoveringLetterMock]
-
-  return (
-    // <ApolloProvider client={client}>
-    <MockedProvider mocks={mocks}>{children}</MockedProvider>
-    // </ApolloProvider>
-  )
+  return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
 
 export default ApolloClientProvider

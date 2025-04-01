@@ -9,8 +9,12 @@ import { GET_CV } from '../../graphql/queries'
 
 import './CV.css'
 
-const CV: React.FC = () => {
-  const { data, loading, error } = useQuery(GET_CV)
+type CVProps = {
+  id?: string
+}
+
+const CV: React.FC<CVProps> = ({ id }) => {
+  const { data, loading, error } = useQuery(GET_CV, { variables: { id } })
 
   if (loading) return <span>Loading...</span>
   if (error) return <span>Error</span>

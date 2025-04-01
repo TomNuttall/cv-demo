@@ -1,8 +1,8 @@
 import { gql } from '../__generated__/gql'
 
 export const GET_CV = gql(`
-  query GetCV {
-    getCV {
+  query GetCV($id: String) {
+    getCV(id: $id) {
       profile {
         name
         email
@@ -36,8 +36,8 @@ export const GET_CV = gql(`
 `)
 
 export const GET_COVERINGLETTER = gql(`
-  query GetCoveringLetter {
-    getCoveringLetter {
+  query GetCoveringLetter($id: String) {
+    getCoveringLetter(id: $id) {
       letter
     }
   }
