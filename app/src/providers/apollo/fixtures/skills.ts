@@ -1,4 +1,4 @@
-import { Skills } from '../../__generated__/resolvers-types.js'
+import { Skills } from '../../../__generated__/graphql'
 
 const skills: Skills = {
   languages: ['Language 1', 'Language 2'],

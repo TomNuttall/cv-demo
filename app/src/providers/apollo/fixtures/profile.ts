@@ -1,4 +1,4 @@
-import { Profile } from '../../__generated__/resolvers-types.js'
+import { Profile } from '../../../__generated__/graphql'
 
 const profile: Profile = {
   name: 'John Doe',

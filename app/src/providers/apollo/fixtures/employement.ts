@@ -1,4 +1,4 @@
-import { Employment } from '../../__generated__/resolvers-types.js'
+import { Employment } from '../../../__generated__/graphql'
 
 const employment: Employment[] = [
   {

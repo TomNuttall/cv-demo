@@ -1,4 +1,4 @@
-import { Education } from '../../__generated__/resolvers-types.js'
+import { Education } from '../../../__generated__/graphql'
 
 const education: Education[] = [
   {

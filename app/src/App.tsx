@@ -27,7 +27,7 @@ function App() {
           <Actions
             onSavePdf={reactToPrintFn}
             applicationId={applicationId}
-            onApplicationId={setApplicationId}
+            setApplicationId={setApplicationId}
           />
           <main id="main-content" className="app__content" ref={contentRef}>
             <style>{`@page { margin: 4rem; }`}</style>
