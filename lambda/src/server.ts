@@ -21,10 +21,11 @@ const resolvers = {
 }
 
 const schema = makeExecutableSchema({ typeDefs, resolvers })
-const securedSchema = applyMiddleware(schema, permissions)
+// Add for auth
+//const securedSchema = applyMiddleware(schema, permissions)
 
 export const serverProps = {
-  schema: securedSchema,
+  schema: schema,
   plugins: [
     process.env.NODE_ENV === 'production'
       ? ApolloServerPluginLandingPageDisabled()
