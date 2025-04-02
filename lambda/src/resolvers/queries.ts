@@ -1,13 +1,30 @@
 import { QueryResolvers } from '../__generated__/resolvers-types.js'
+import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 
-import education from './data/education.js'
-import employment from './data/employement.js'
-import profile from './data/profile.js'
-import skills from './data/skills.js'
-import letter from './data/covering-letter.js'
+const { BUCKET_NAME } = process.env
+
+export const getContent = async (
+  s3Client: S3Client,
+  key: string,
+): Promise<string | undefined> => {
+  const command = new GetObjectCommand({
+    Bucket: BUCKET_NAME ?? '',
+    Key: key,
+  })
+
+  const response = await s3Client.send(command)
+  return response?.Body?.transformToString()
+}
 
 const queries: QueryResolvers = {
-  getCV: async (_, { id }) => {
+  getCV: async (_, { id }, { s3Client }) => {
+    const content = await getContent(
+      s3Client,
+      `applications/${id ? `${id}` : 'demo'}/cv.json`,
+    )
+    if (!content) return null
+
+    const { profile, employment, education, skills } = JSON.parse(content)
     return {
       profile,
       employment,
@@ -16,7 +33,14 @@ const queries: QueryResolvers = {
     }
   },
 
-  getCoveringLetter: async (_, { id }) => {
+  getCoveringLetter: async (_, { id }, { s3Client }) => {
+    const content = await getContent(
+      s3Client,
+      `applications/${id ? `${id}` : 'demo'}/coveringletter.json`,
+    )
+    if (!content) return null
+
+    const { letter } = JSON.parse(content)
     return {
       letter,
     }

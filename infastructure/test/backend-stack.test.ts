@@ -10,6 +10,7 @@ describe('BackendStack', () => {
         account: '123',
         region: 'local',
       },
+      bucketName: 'My Bucket',
       repoName: 'xyz',
     }
     const app = new cdk.App()

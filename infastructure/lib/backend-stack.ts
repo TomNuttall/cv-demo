@@ -2,10 +2,10 @@ import * as cdk from 'aws-cdk-lib'
 import { Construct } from 'constructs'
 import * as iam from 'aws-cdk-lib/aws-iam'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
-import * as apigwv2integrations from 'aws-cdk-lib/aws-apigatewayv2-integrations'
 import * as logs from 'aws-cdk-lib/aws-logs'
 
 interface BackendStackProps extends cdk.StackProps {
+  bucketName: string
   repoName: string
 }
 
@@ -13,7 +13,20 @@ export class BackendStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: BackendStackProps) {
     super(scope, id, props)
 
-    const graphQLLambda = this.createLambda('graphQL', [])
+    const lambdaPolicys = [
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: ['s3:ListBucket'],
+        resources: [`arn:aws:s3:::${props.bucketName}`],
+      }),
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: ['s3:DeleteObject', 's3:GetObject', 's3:PutObject'],
+        resources: [`arn:aws:s3:::${props.bucketName}/applications/*`],
+      }),
+    ]
+
+    const graphQLLambda = this.createLambda('graphQL', lambdaPolicys)
 
     const githubRole = new iam.Role(this, 'roleGithub', {
       assumedBy: new iam.FederatedPrincipal(
