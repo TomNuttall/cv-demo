@@ -1,8 +1,6 @@
-import Markdown from 'react-markdown'
-
 import { Calendar, Location } from '../../assets/icons'
 import Icon from '../utility/icon'
-import Link from '../utility/link'
+import MDContent from '../utility/mdcontent/MDContent'
 import { formatYear } from '../../lib/formatYear'
 
 import { Employment as EmploymentProps } from '../../__generated__/graphql'
@@ -48,14 +46,7 @@ const Employment: React.FC<EmploymentProps> = ({
           <ul>
             {projectDetails.map((details, idx) => (
               <li key={`project_${idx}`} data-testid="employment-projects">
-                <Markdown
-                  components={{
-                    a: Link,
-                    p: ({ children }) => <>{children}</>,
-                  }}
-                >
-                  {details}
-                </Markdown>
+                <MDContent content={details} />
               </li>
             ))}
           </ul>

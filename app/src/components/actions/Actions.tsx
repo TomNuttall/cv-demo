@@ -1,3 +1,7 @@
+import { useForm } from 'react-hook-form'
+
+import { Application } from '../../assets/icons'
+
 import './Actions.css'
 
 type ActionsProps = {
@@ -6,27 +10,37 @@ type ActionsProps = {
   setApplicationId: (id: string) => void
 }
 
+type ActionsForm = {
+  applicationId: string
+}
+
 const Actions: React.FC<ActionsProps> = ({
   onSavePdf,
   applicationId,
   setApplicationId,
 }) => {
+  const { register, handleSubmit } = useForm<ActionsForm>({
+    defaultValues: { applicationId },
+  })
+
+  const onSubmit = (data: ActionsForm) => {
+    setApplicationId(data.applicationId)
+  }
+
   return (
     <div className="actions">
-      <button className="actions__print" onClick={onSavePdf}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="actions__form">
+          <div className="actions__label">
+            <Application title="applications" />
+            <label htmlFor="applicationId">Application</label>
+          </div>
+          <input id="applicationId" {...register('applicationId')} />
+        </div>
+      </form>
+      <button className="actions__button" onClick={onSavePdf}>
         Save PDF
       </button>
-      <div className="actions__input">
-        <label htmlFor="applicationId">Id</label>
-        <input
-          id="applicationId"
-          name="applicationId"
-          type="text"
-          value={applicationId}
-          placeholder=""
-          onChange={(e) => setApplicationId(e.target.value)}
-        />
-      </div>
     </div>
   )
 }

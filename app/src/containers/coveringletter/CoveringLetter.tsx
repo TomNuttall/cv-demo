@@ -1,8 +1,6 @@
 import { useQuery } from '@apollo/client'
-import Markdown from 'react-markdown'
 
-import Link from '../../components/utility/link'
-
+import MDContent from '../../components/utility/mdcontent'
 import { GET_COVERINGLETTER } from '../../graphql/queries'
 
 import './CoveringLetter.css'
@@ -27,14 +25,7 @@ const CoveringLetter: React.FC<CoveringLetterProps> = ({ id }) => {
     <div className="covering-letter">
       {letter.map((text, idx) => (
         <p key={`cl_${idx}`}>
-          <Markdown
-            components={{
-              a: Link,
-              p: ({ children }) => <>{children}</>,
-            }}
-          >
-            {text}
-          </Markdown>
+          <MDContent content={text} />
         </p>
       ))}
     </div>

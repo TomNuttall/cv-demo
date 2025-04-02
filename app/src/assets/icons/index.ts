@@ -1,4 +1,5 @@
 /// <reference types="vite-plugin-svgr/client" />
+import Application from './application.svg?react'
 import Calendar from './calendar.svg?react'
 import Certificate from './certificate.svg?react'
 import Code from './code.svg?react'
@@ -10,6 +11,7 @@ import User from './user.svg?react'
 import Wrench from './wrench.svg?react'
 
 export {
+  Application,
   Calendar,
   Certificate,
   Code,

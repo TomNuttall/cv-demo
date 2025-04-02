@@ -15,20 +15,24 @@ const LINKS = [
   { name: 'Covering Letter', src: `/covering-letter` },
 ]
 
-function App() {
+const App: React.FC = () => {
   const [applicationId, setApplicationId] = useState<string>('')
+
   const contentRef = useRef<HTMLDivElement>(null)
+
   const reactToPrintFn = useReactToPrint({ contentRef })
+
   return (
     <div className="app">
       <ApolloClientProvider>
         <BrowserRouter basename="/projects/cv-template">
-          <Header links={LINKS} name="C V" />
-          <Actions
-            onSavePdf={reactToPrintFn}
-            applicationId={applicationId}
-            setApplicationId={setApplicationId}
-          />
+          <Header links={LINKS} name="C V">
+            <Actions
+              onSavePdf={reactToPrintFn}
+              applicationId={applicationId}
+              setApplicationId={setApplicationId}
+            />
+          </Header>
           <main id="main-content" className="app__content" ref={contentRef}>
             <style>{`@page { margin: 4rem; }`}</style>
 
