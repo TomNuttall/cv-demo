@@ -30,7 +30,11 @@ jobs:
         run: yarn install
         working-directory: ./lambda
 
-      - name: Test Backend
+      - name: Build
+        run: yarn build
+        working-directory: ./lambda
+
+      - name: Test
         run: yarn test
         working-directory: ./lambda
 
