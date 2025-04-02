@@ -1,5 +1,5 @@
 # CV Template
-Simple React app for formatting CV with component blocks.
+React app for formatting CV with component blocks, uses a graphql backend and s3 for storage.
 
 https://tomnuttall.dev/projects/cv-template/
 
