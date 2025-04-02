@@ -60,9 +60,9 @@ describe('<Actions />', () => {
       />,
     )
 
-    const input = screen.getByRole('textbox', { name: 'Id' })
+    const input = screen.getByRole('textbox', { name: 'Application' })
     await userEvent.clear(input)
-    await userEvent.type(input, '1')
+    await userEvent.type(input, 'demo{enter}')
 
     // Assert
     expect(setApplicationId).toHaveBeenCalled()
