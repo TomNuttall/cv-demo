@@ -36,7 +36,7 @@ jobs:
 
       - name: Zip lambda package
         run: zip -r ../../lambda_package.zip *
-        working-directory: ./lambda/src/dist
+        working-directory: ./lambda/dist
 
       - name: Configure AWS Credentials for Lambda Access
         uses: aws-actions/configure-aws-credentials@v4

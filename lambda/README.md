@@ -5,3 +5,5 @@ Docker running
 ```
 yarn dev
 ```
+
+## Deploy
