@@ -7,13 +7,18 @@ export const getContent = async (
   s3Client: S3Client,
   key: string,
 ): Promise<string | undefined> => {
-  const command = new GetObjectCommand({
-    Bucket: BUCKET_NAME ?? '',
-    Key: key,
-  })
+  try {
+    const command = new GetObjectCommand({
+      Bucket: BUCKET_NAME ?? '',
+      Key: key,
+    })
 
-  const response = await s3Client.send(command)
-  return response?.Body?.transformToString()
+    const response = await s3Client.send(command)
+    return response?.Body?.transformToString()
+  } catch (e) {
+    console.info(e)
+    return undefined
+  }
 }
 
 const queries: QueryResolvers = {
