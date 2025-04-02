@@ -30,13 +30,21 @@ jobs:
         run: yarn install
         working-directory: ./lambda
 
+      - name: Test
+        run: yarn test
+        working-directory: ./lambda
+
       - name: Build
         run: yarn build
         working-directory: ./lambda
 
-      - name: Test
-        run: yarn test
+      - name: Copy
+        run: yarn copy
         working-directory: ./lambda
+
+      - name: Prod install
+        run: yarn install --production
+        working-directory: ./lambda/dist
 
       - name: Zip lambda package
         run: zip -r ../../lambda_package.zip *

@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "copy": "cp package_deploy.json dist/package.json; cp -r src/schemas dist;cp -r node_modules dist",
-    "dev": "yarn build; yarn copy;sam local start-api",
+    "copy": "cp package.json dist/package.json; cp -r src/schemas dist;",
+    "dev": "yarn build; yarn copy;cp -r node_modules dist;sam local start-api",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "generate": "graphql-codegen --config codegen.ts"
   },
