@@ -4,8 +4,12 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+    timeout-minutes: 5
+
     steps:
       - uses: actions/checkout@v4
 
