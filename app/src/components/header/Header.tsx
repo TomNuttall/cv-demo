@@ -20,14 +20,14 @@ const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
   name,
   children,
 }) => {
-  const location = useLocation()
+  const { pathname, search } = useLocation()
 
   useEffect(() => {
-    const match = links.find((link) => link.src.includes(location.pathname))
+    const match = links.find((link) => link.src.includes(pathname))
     if (match) {
       document.title = `${name} - ${match.name}`
     }
-  }, [location, name, links])
+  }, [pathname, name, links])
 
   const titleName = name
     .split(' ')
@@ -48,7 +48,7 @@ const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
           <ul>
             {links.map((link) => (
               <li key={link.name}>
-                <NavLink to={link.src}>{link.name}</NavLink>
+                <NavLink to={`${link.src}${search}`}>{link.name}</NavLink>
               </li>
             ))}
           </ul>
