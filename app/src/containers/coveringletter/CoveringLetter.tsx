@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { Loading } from 'react-loading-dot'
 
 import MDContent from '../../components/utility/mdcontent'
 import { GET_COVERINGLETTER } from '../../graphql/queries'
@@ -15,8 +14,7 @@ const CoveringLetter: React.FC<CoveringLetterProps> = ({ id }) => {
     variables: { id },
   })
 
-  if (loading)
-    return <Loading dots="3" size="1rem" margin="0.5rem" background="#2b2d42" />
+  if (loading) return <div className="loader" />
 
   if (error || !data?.getCoveringLetter) return <></>
 
