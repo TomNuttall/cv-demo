@@ -77,3 +77,10 @@
     text-underline-offset: 10%;
   }
 }
+
+.header__login {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}

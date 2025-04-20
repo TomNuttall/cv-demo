@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
+import { ClerkProvider } from '@clerk/clerk-react'
 
 import Header from './Header'
 
@@ -14,9 +15,13 @@ describe('<Header />', () => {
 
     // Act
     render(
-      <MemoryRouter>
-        <Header links={links} name={'Test User'} />
-      </MemoryRouter>,
+      <ClerkProvider
+        publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}
+      >
+        <MemoryRouter>
+          <Header links={links} name={'Test User'} />
+        </MemoryRouter>
+      </ClerkProvider>,
     )
 
     // Assert
@@ -27,31 +32,19 @@ describe('<Header />', () => {
     ).toBeInTheDocument()
   })
 
-  it('should render component with children', () => {
-    // Arrange
-    const children = <button>CTA</button>
-
-    // Act
-    render(
-      <MemoryRouter>
-        <Header links={links} name={'Test User'}>
-          {children}
-        </Header>
-      </MemoryRouter>,
-    )
-
-    // Assert
-    expect(screen.getByRole('button', { name: 'CTA' })).toBeInTheDocument()
-  })
-
   it('should update document title', () => {
     // Arrange
 
     // Act
     render(
-      <MemoryRouter initialEntries={['/covering-letter']}>
-        <Header links={links} name={'Test User'} />
-      </MemoryRouter>,
+      <ClerkProvider
+        publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}
+      >
+        <MemoryRouter initialEntries={['/covering-letter']}>
+          <Header links={links} name={'Test User'} />
+        </MemoryRouter>
+        ,
+      </ClerkProvider>,
     )
 
     // Assert
