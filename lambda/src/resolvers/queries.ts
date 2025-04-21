@@ -22,8 +22,7 @@ export const getContent = async (
 }
 
 const queries: QueryResolvers = {
-  getCV: async (_, { id }, { s3Client, isLoggedIn }) => {
-    console.log('TOM: ', isLoggedIn)
+  getCV: async (_, { id }, { s3Client }) => {
     const content = await getContent(
       s3Client,
       `applications/${id ? `${id}` : 'demo'}/cv.json`,

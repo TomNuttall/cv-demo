@@ -9,6 +9,7 @@ import { Context } from '../../../src/context'
 
 const s3Mock = mockClient(S3Client)
 const context: Context = {
+  isLoggedIn: false,
   s3Client: new S3Client(),
 }
 

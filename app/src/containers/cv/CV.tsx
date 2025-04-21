@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { Loading } from 'react-loading-dot'
 
 import Education from '../../components/education'
 import Employment from '../../components/employment'
@@ -17,8 +16,7 @@ type CVProps = {
 const CV: React.FC<CVProps> = ({ id }) => {
   const { data, loading, error } = useQuery(GET_CV, { variables: { id } })
 
-  if (loading)
-    return <Loading dots="3" size="1rem" margin="0.5rem" background="#2b2d42" />
+  if (loading) return <div className="loader" />
 
   if (error || !data?.getCV) return <></>
 
