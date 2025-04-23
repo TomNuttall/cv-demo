@@ -14,15 +14,25 @@ const clerkClient = createClerkClient({
 })
 
 const createContext = async ({
-  req,
-  res,
+  event,
+  context,
 }: {
-  req: any
-  res: any
+  event: any
+  context: any
 }): Promise<Context> => {
-  const { isSignedIn } = await clerkClient.authenticateRequest(req)
-  console.info('SignedIn: ', isSignedIn)
-  return { s3Client, isLoggedIn: isSignedIn }
+  let isLoggedIn = false
+
+  try {
+    const req = { ...event, url: event.headers.origin }
+    delete req.body
+
+    const res = await clerkClient.authenticateRequest(req)
+    console.info('RES: ', res)
+    isLoggedIn = res.isSignedIn
+  } catch (e) {
+    console.info(e)
+  }
+  return { s3Client, isLoggedIn }
 }
 
 export { type Context, createContext }
