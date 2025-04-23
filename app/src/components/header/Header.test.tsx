@@ -1,6 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
+import createFetchMock from 'vitest-fetch-mock'
+import { vi } from 'vitest'
 import { ClerkProvider } from '@clerk/clerk-react'
+
+const fetchMocker = createFetchMock(vi)
+fetchMocker.enableMocks()
 
 import Header from './Header'
 
@@ -9,15 +14,14 @@ describe('<Header />', () => {
     { name: 'CV', src: '/cv' },
     { name: 'Covering Letter', src: '/covering-letter' },
   ]
+  const publishableKey = `pk_test_${window.btoa('$')}`
 
   it('should render component', () => {
     // Arrange
 
     // Act
     render(
-      <ClerkProvider
-        publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}
-      >
+      <ClerkProvider publishableKey={publishableKey}>
         <MemoryRouter>
           <Header links={links} name={'Test User'} />
         </MemoryRouter>
@@ -37,13 +41,10 @@ describe('<Header />', () => {
 
     // Act
     render(
-      <ClerkProvider
-        publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}
-      >
+      <ClerkProvider publishableKey={publishableKey}>
         <MemoryRouter initialEntries={['/covering-letter']}>
           <Header links={links} name={'Test User'} />
         </MemoryRouter>
-        ,
       </ClerkProvider>,
     )
 

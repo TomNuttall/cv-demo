@@ -21,6 +21,7 @@ const createContext = async ({
   res: any
 }): Promise<Context> => {
   const { isSignedIn } = await clerkClient.authenticateRequest(req)
+  console.info('SignedIn: ', isSignedIn)
   return { s3Client, isLoggedIn: isSignedIn }
 }
 
