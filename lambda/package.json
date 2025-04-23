@@ -13,6 +13,7 @@
   "dependencies": {
     "@apollo/server": "^4.11.3",
     "@as-integrations/aws-lambda": "^3.1.0",
+    "@clerk/backend": "^1.26.0",
     "@graphql-tools/schema": "^10.0.23",
     "graphql": "^16.10.0",
     "graphql-middleware": "^6.1.35",

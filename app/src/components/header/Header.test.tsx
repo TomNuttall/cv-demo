@@ -1,5 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
+import createFetchMock from 'vitest-fetch-mock'
+import { vi } from 'vitest'
+import { ClerkProvider } from '@clerk/clerk-react'
+
+const fetchMocker = createFetchMock(vi)
+fetchMocker.enableMocks()
 
 import Header from './Header'
 
@@ -8,15 +14,18 @@ describe('<Header />', () => {
     { name: 'CV', src: '/cv' },
     { name: 'Covering Letter', src: '/covering-letter' },
   ]
+  const publishableKey = `pk_test_${window.btoa('$')}`
 
   it('should render component', () => {
     // Arrange
 
     // Act
     render(
-      <MemoryRouter>
-        <Header links={links} name={'Test User'} />
-      </MemoryRouter>,
+      <ClerkProvider publishableKey={publishableKey}>
+        <MemoryRouter>
+          <Header links={links} name={'Test User'} />
+        </MemoryRouter>
+      </ClerkProvider>,
     )
 
     // Assert
@@ -27,31 +36,16 @@ describe('<Header />', () => {
     ).toBeInTheDocument()
   })
 
-  it('should render component with children', () => {
-    // Arrange
-    const children = <button>CTA</button>
-
-    // Act
-    render(
-      <MemoryRouter>
-        <Header links={links} name={'Test User'}>
-          {children}
-        </Header>
-      </MemoryRouter>,
-    )
-
-    // Assert
-    expect(screen.getByRole('button', { name: 'CTA' })).toBeInTheDocument()
-  })
-
   it('should update document title', () => {
     // Arrange
 
     // Act
     render(
-      <MemoryRouter initialEntries={['/covering-letter']}>
-        <Header links={links} name={'Test User'} />
-      </MemoryRouter>,
+      <ClerkProvider publishableKey={publishableKey}>
+        <MemoryRouter initialEntries={['/covering-letter']}>
+          <Header links={links} name={'Test User'} />
+        </MemoryRouter>
+      </ClerkProvider>,
     )
 
     // Assert

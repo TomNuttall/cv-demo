@@ -1,4 +1,5 @@
 import { shield, allow, deny } from 'graphql-shield'
+//import { isAuthenticated } from './rules.js'
 
 const permissions = shield(
   {

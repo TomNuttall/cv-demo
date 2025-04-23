@@ -1,14 +1,13 @@
 .actions {
+  background-color: rgb(52, 55, 87);
+  color: white;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   column-gap: 2rem;
   row-gap: 1.5rem;
-
-  @media only screen and (max-width: 768px) {
-    margin-top: 1.5rem;
-  }
+  padding: 0.75rem 0;
 }
 
 .actions__form {
@@ -23,30 +22,4 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.actions__button {
-  background-color: #2b2d42;
-  color: white;
-  font-weight: 700;
-  font-size: 1rem;
-  border-radius: 0.25rem;
-  border: 1px solid white;
-  padding: 0.75rem 1.5rem;
-
-  text-align: center;
-  cursor: pointer;
-
-  &:hover {
-    background-color: white;
-    color: #2b2d42;
-  }
-
-  &:focus {
-    outline: solid 0.125rem white;
-    outline-offset: 0.125rem;
-    z-index: 1;
-  }
-
-  transition: 0.1s ease-in-out;
 }

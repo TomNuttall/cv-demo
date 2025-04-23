@@ -1,5 +1,12 @@
 import { useEffect } from 'react'
 import { useLocation, NavLink } from 'react-router-dom'
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+  UserButton,
+} from '@clerk/clerk-react'
 
 import { User } from '../../assets/icons'
 
@@ -15,11 +22,7 @@ type HeaderProps = {
   name: string
 }
 
-const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
-  links,
-  name,
-  children,
-}) => {
+const Header: React.FC<HeaderProps> = ({ links, name }) => {
   const { pathname, search } = useLocation()
 
   useEffect(() => {
@@ -54,7 +57,19 @@ const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
           </ul>
         </nav>
       </div>
-      {children}
+      <div className="header__login">
+        <SignedOut>
+          <SignInButton>
+            <button className="button">Sign In</button>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+          <SignOutButton>
+            <button className="button">Sign Out</button>
+          </SignOutButton>
+        </SignedIn>
+      </div>
     </header>
   )
 }

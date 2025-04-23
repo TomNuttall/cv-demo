@@ -38,7 +38,7 @@ const Actions: React.FC<ActionsProps> = ({
           <input id="applicationId" {...register('applicationId')} />
         </div>
       </form>
-      <button className="actions__button" onClick={onSavePdf}>
+      <button className="button" onClick={onSavePdf}>
         Save PDF
       </button>
     </div>

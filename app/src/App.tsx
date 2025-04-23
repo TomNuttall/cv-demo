@@ -8,6 +8,7 @@ import {
   useSearchParams,
   useLocation,
 } from 'react-router-dom'
+import { ClerkProvider } from '@clerk/clerk-react'
 
 import ApolloClientProvider from './providers/apollo'
 import Actions from './components/actions'
@@ -33,13 +34,14 @@ const AppContent: React.FC = () => {
 
   return (
     <>
-      <Header links={LINKS} name="C V">
-        <Actions
-          onSavePdf={reactToPrintFn}
-          applicationId={applicationId}
-          setApplicationId={(id) => setSearchParams({ application: id })}
-        />
-      </Header>
+      <Header links={LINKS} name="C V" />
+
+      <Actions
+        onSavePdf={reactToPrintFn}
+        applicationId={applicationId}
+        setApplicationId={(id) => setSearchParams({ application: id })}
+      />
+
       <main id="main-content" className="app__content" ref={contentRef}>
         <style>{`@page { margin: 4rem; }`}</style>
 
@@ -62,11 +64,15 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <div className="app">
-      <ApolloClientProvider>
-        <BrowserRouter basename="/projects/cv-template">
-          <AppContent />
-        </BrowserRouter>
-      </ApolloClientProvider>
+      <ClerkProvider
+        publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}
+      >
+        <ApolloClientProvider>
+          <BrowserRouter basename="/projects/cv-template">
+            <AppContent />
+          </BrowserRouter>
+        </ApolloClientProvider>
+      </ClerkProvider>
     </div>
   )
 }
