@@ -65,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({ links, name }) => {
         </SignedOut>
         <SignedIn>
           <UserButton />
-          <SignOutButton>
+          <SignOutButton redirectUrl="/">
             <button className="button">Sign Out</button>
           </SignOutButton>
         </SignedIn>
