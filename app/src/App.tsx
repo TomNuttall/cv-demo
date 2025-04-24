@@ -8,7 +8,7 @@ import {
   useSearchParams,
   useLocation,
 } from 'react-router-dom'
-import { ClerkProvider } from '@clerk/clerk-react'
+import { ClerkProvider, SignedIn } from '@clerk/clerk-react'
 
 import ApolloClientProvider from './providers/apollo'
 import Actions from './components/actions'
@@ -35,12 +35,13 @@ const AppContent: React.FC = () => {
   return (
     <>
       <Header links={LINKS} name="C V" />
-
-      <Actions
-        onSavePdf={reactToPrintFn}
-        applicationId={applicationId}
-        setApplicationId={(id) => setSearchParams({ application: id })}
-      />
+      <SignedIn>
+        <Actions
+          onSavePdf={reactToPrintFn}
+          applicationId={applicationId}
+          setApplicationId={(id) => setSearchParams({ application: id })}
+        />
+      </SignedIn>
 
       <main id="main-content" className="app__content" ref={contentRef}>
         <style>{`@page { margin: 4rem; }`}</style>
