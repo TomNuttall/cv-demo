@@ -4,8 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@clerk/testing": "^1.5.1",
     "@playwright/test": "^1.51.1",
-    "@types/node": "^22.14.0"
+    "@types/node": "^22.14.1"
   },
-  "scripts": {}
+  "scripts": {
+    "test": "yarn playwright test",
+    "test:ui": "yarn playwright test --ui"
+  }
 }

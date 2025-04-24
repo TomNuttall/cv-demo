@@ -21,14 +21,16 @@ const createContext = async ({
   context: any
 }): Promise<Context> => {
   let isLoggedIn = false
-
   try {
     const req = { ...event, url: event.headers.origin }
     delete req.body
 
-    const res = await clerkClient.authenticateRequest(req)
-    console.info('RES: ', res)
-    isLoggedIn = res.isSignedIn
+    const { isSignedIn } = await clerkClient.authenticateRequest(req, {
+      jwtKey: process.env.CLERK_JWT_KEY,
+      authorizedParties: ['https://tomnuttall.dev'],
+    })
+
+    isLoggedIn = isSignedIn
   } catch (e) {
     console.info(e)
   }
