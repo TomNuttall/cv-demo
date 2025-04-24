@@ -1,6 +1,6 @@
 ## Run locally
 
-Docker running
+Docker running for SAM
 
 ```
 yarn dev
