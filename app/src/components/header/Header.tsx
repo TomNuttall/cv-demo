@@ -65,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({ links, name }) => {
         </SignedOut>
         <SignedIn>
           <UserButton />
-          <SignOutButton redirectUrl="/">
+          <SignOutButton redirectUrl={import.meta.env.BASE_URL}>
             <button className="button">Sign Out</button>
           </SignOutButton>
         </SignedIn>
