@@ -42,6 +42,7 @@ type CoveringLetter {
 }
 
 type Query {
+  getMyApplications: [String!]!
   getCV(id: String): CV
   getCoveringLetter(id: String): CoveringLetter
 }

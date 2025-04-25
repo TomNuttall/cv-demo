@@ -13,28 +13,43 @@ const clerkClient = createClerkClient({
   publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
 })
 
-const createContext = async ({
-  event,
-  context,
-}: {
-  event: any
-  context: any
-}): Promise<Context> => {
+const authLoggedIn = async (event: any): Promise<boolean> {
   let isLoggedIn = false
   try {
-    const req = { ...event, url: event.headers.origin }
+    const req = {
+      ...event,
+      url: event.headers.origin ?? event.headers.Origin,
+    }
     delete req.body
 
-    const { isSignedIn } = await clerkClient.authenticateRequest(req, {
-      jwtKey: process.env.CLERK_JWT_KEY,
-      authorizedParties: ['https://tomnuttall.dev'],
-    })
+    const { isSignedIn } = await clerkClient.authenticateRequest(
+      req,
+      process.env.NODE_PRODUCTION
+        ? {
+            jwtKey: process.env.CLERK_JWT_KEY,
+            authorizedParties: ['https://tomnuttall.dev'],
+          }
+        : {},
+    )
 
     isLoggedIn = isSignedIn
   } catch (e) {
     console.info(e)
   }
-  return { s3Client, isLoggedIn }
+
+  return isLoggedIn
+}
+
+const createContext = async ({
+  event,
+  context,
+}: {
+  event: any
+  context: BaseContext
+}): Promise<Context> => {
+  const isLoggedIn = await authLoggedIn(event)
+
+  return { ...context, s3Client, isLoggedIn }
 }
 
 export { type Context, createContext }
