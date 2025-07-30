@@ -62,7 +62,7 @@ const queries: QueryResolvers = {
   getCoveringLetter: async (_, { id = 'demo' }, { s3Client }) => {
     const content = await getContent(
       s3Client,
-      `${BUCKET_PREFIX}/${id}/coveringletter.json`,
+      `${BUCKET_PREFIX}${id}/coveringletter.json`,
     )
     if (!content) return null
 
