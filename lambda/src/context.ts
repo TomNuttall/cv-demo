@@ -13,7 +13,7 @@ const clerkClient = createClerkClient({
   publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
 })
 
-const authLoggedIn = async (event: any): Promise<boolean> {
+const authLoggedIn = async (event: any): Promise<boolean> => {
   let isLoggedIn = false
   try {
     const req = {

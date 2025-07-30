@@ -4,13 +4,12 @@ import { isAuthenticated } from './rule.js'
 const permissions = shield(
   {
     Query: {
-      '*': deny,
       getMyApplications: isAuthenticated,
-      getCV: allow,
-      getCoveringLetter: allow,
+      getCV: isAuthenticated,
+      getCoveringLetter: isAuthenticated,
     },
   },
-  { fallbackError: 'Error' },
+  { fallbackRule: deny, fallbackError: 'Error' },
 )
 
 export default permissions

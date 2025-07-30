@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form'
-
 import { Application } from '../../assets/icons'
 
 import './Actions.css'
@@ -8,6 +7,7 @@ type ActionsProps = {
   onSavePdf: () => void
   applicationId: string
   setApplicationId: (id: string) => void
+  myApplications?: string[]
 }
 
 type ActionsForm = {
@@ -18,6 +18,7 @@ const Actions: React.FC<ActionsProps> = ({
   onSavePdf,
   applicationId,
   setApplicationId,
+  myApplications,
 }) => {
   const { register, handleSubmit } = useForm<ActionsForm>({
     defaultValues: { applicationId },
@@ -35,7 +36,23 @@ const Actions: React.FC<ActionsProps> = ({
             <Application title="applications" />
             <label htmlFor="applicationId">Application</label>
           </div>
-          <input id="applicationId" {...register('applicationId')} />
+          {myApplications && (
+            <>
+              <select id="applicationId" {...register('applicationId')}>
+                <option value="">--Please choose an option--</option>
+                {myApplications.map((option) => (
+                  <option
+                    key={option}
+                    value={option}
+                    selected={applicationId === option}
+                  >
+                    {option}
+                  </option>
+                ))}
+              </select>
+              <input type="submit" />
+            </>
+          )}
         </div>
       </form>
       <button className="button" onClick={onSavePdf}>

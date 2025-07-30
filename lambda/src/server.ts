@@ -1,6 +1,7 @@
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default'
 import { ApolloServerPluginLandingPageDisabled } from '@apollo/server/plugin/disabled'
 import { makeExecutableSchema } from '@graphql-tools/schema'
+import { ApolloServerOptions, BaseContext } from '@apollo/server'
 import { applyMiddleware } from 'graphql-middleware'
 import { fileURLToPath } from 'url'
 import path from 'path'
@@ -24,7 +25,7 @@ const schema = makeExecutableSchema({ typeDefs, resolvers })
 // Add for auth
 const securedSchema = applyMiddleware(schema, permissions)
 
-export const serverProps = {
+export const serverProps: ApolloServerOptions<BaseContext> = {
   schema: securedSchema,
   plugins: [
     process.env.NODE_ENV === 'production'
