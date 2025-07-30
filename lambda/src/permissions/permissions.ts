@@ -1,15 +1,15 @@
 import { shield, allow, deny } from 'graphql-shield'
-//import { isAuthenticated } from './rules.js'
+import { isAuthenticated } from './rule.js'
 
 const permissions = shield(
   {
     Query: {
-      '*': deny,
-      getCV: allow,
-      getCoveringLetter: allow,
+      getMyApplications: isAuthenticated,
+      getCV: isAuthenticated,
+      getCoveringLetter: isAuthenticated,
     },
   },
-  { fallbackError: 'Error' },
+  { fallbackRule: deny, fallbackError: 'Error' },
 )
 
 export default permissions

@@ -9,6 +9,7 @@ describe('<Actions />', () => {
     const onSavePdf = vitest.fn()
     const applicationId = 'abc123'
     const setApplicationId = vitest.fn()
+    const myApplications = [applicationId]
 
     // Act
     render(
@@ -16,6 +17,7 @@ describe('<Actions />', () => {
         onSavePdf={onSavePdf}
         applicationId={applicationId}
         setApplicationId={setApplicationId}
+        myApplications={myApplications}
       />,
     )
 
@@ -28,6 +30,7 @@ describe('<Actions />', () => {
     const onSavePdf = vitest.fn()
     const applicationId = 'abc123'
     const setApplicationId = vitest.fn()
+    const myApplications = [applicationId]
 
     // Act
     render(
@@ -35,6 +38,7 @@ describe('<Actions />', () => {
         onSavePdf={onSavePdf}
         applicationId={applicationId}
         setApplicationId={setApplicationId}
+        myApplications={myApplications}
       />,
     )
 
@@ -48,21 +52,25 @@ describe('<Actions />', () => {
   it('should trigger setApplicationId function on button press', async () => {
     // Arrange
     const onSavePdf = vitest.fn()
-    const applicationId = 'abc123'
+    const applicationId = 'xyz-123'
     const setApplicationId = vitest.fn()
+    const myApplications = [applicationId]
 
     // Act
     render(
       <Actions
         onSavePdf={onSavePdf}
-        applicationId={applicationId}
+        applicationId={''}
         setApplicationId={setApplicationId}
+        myApplications={myApplications}
       />,
     )
 
-    const input = screen.getByRole('textbox', { name: 'Application' })
-    await userEvent.clear(input)
-    await userEvent.type(input, 'demo{enter}')
+    const optionButton = screen.getByRole('option', { name: applicationId })
+    await userEvent.click(optionButton)
+
+    const submitButton = screen.getByRole('button', { name: 'Submit' })
+    await userEvent.click(submitButton)
 
     // Assert
     expect(setApplicationId).toHaveBeenCalled()

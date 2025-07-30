@@ -1,5 +1,11 @@
 import { gql } from '../__generated__/gql'
 
+export const GET_MY_APPLICATIONS = gql(`
+  query GetMyApplications {
+    getMyApplications
+  }
+`)
+
 export const GET_CV = gql(`
   query GetCV($id: String) {
     getCV(id: $id) {

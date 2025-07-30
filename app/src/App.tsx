@@ -9,6 +9,9 @@ import {
   useLocation,
 } from 'react-router-dom'
 import { ClerkProvider, SignedIn } from '@clerk/clerk-react'
+import { useQuery } from '@apollo/client'
+
+import { GET_MY_APPLICATIONS } from './graphql/queries'
 
 import ApolloClientProvider from './providers/apollo'
 import Actions from './components/actions'
@@ -31,6 +34,7 @@ const AppContent: React.FC = () => {
   const reactToPrintFn = useReactToPrint({ contentRef })
 
   const applicationId = searchParams.get('application') ?? 'demo'
+  const { data } = useQuery(GET_MY_APPLICATIONS)
 
   return (
     <>
@@ -40,6 +44,7 @@ const AppContent: React.FC = () => {
           onSavePdf={reactToPrintFn}
           applicationId={applicationId}
           setApplicationId={(id) => setSearchParams({ application: id })}
+          myApplications={data?.getMyApplications}
         />
       </SignedIn>
 

@@ -62,6 +62,7 @@ export type Query = {
   __typename?: 'Query';
   getCV?: Maybe<Cv>;
   getCoveringLetter?: Maybe<CoveringLetter>;
+  getMyApplications: Array<Scalars['String']['output']>;
 };
 
 
@@ -81,6 +82,11 @@ export type Skills = {
   tools: Array<Scalars['String']['output']>;
 };
 
+export type GetMyApplicationsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMyApplicationsQuery = { __typename?: 'Query', getMyApplications: Array<string> };
+
 export type GetCvQueryVariables = Exact<{
   id?: InputMaybe<Scalars['String']['input']>;
 }>;
@@ -96,5 +102,6 @@ export type GetCoveringLetterQueryVariables = Exact<{
 export type GetCoveringLetterQuery = { __typename?: 'Query', getCoveringLetter?: { __typename?: 'CoveringLetter', letter: Array<string> } | null };
 
 
+export const GetMyApplicationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetMyApplications"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getMyApplications"}}]}}]} as unknown as DocumentNode<GetMyApplicationsQuery, GetMyApplicationsQueryVariables>;
 export const GetCvDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCV"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCV"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"about"}}]}},{"kind":"Field","name":{"kind":"Name","value":"employment"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"projectType"}},{"kind":"Field","name":{"kind":"Name","value":"projectDetails"}},{"kind":"Field","name":{"kind":"Name","value":"role"}},{"kind":"Field","name":{"kind":"Name","value":"roleDetails"}},{"kind":"Field","name":{"kind":"Name","value":"yearFrom"}},{"kind":"Field","name":{"kind":"Name","value":"yearTo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"education"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"course"}},{"kind":"Field","name":{"kind":"Name","value":"courseDetails"}},{"kind":"Field","name":{"kind":"Name","value":"school"}},{"kind":"Field","name":{"kind":"Name","value":"yearFrom"}},{"kind":"Field","name":{"kind":"Name","value":"yearTo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"skills"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"languages"}},{"kind":"Field","name":{"kind":"Name","value":"tools"}},{"kind":"Field","name":{"kind":"Name","value":"certificates"}}]}}]}}]}}]} as unknown as DocumentNode<GetCvQuery, GetCvQueryVariables>;
 export const GetCoveringLetterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCoveringLetter"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCoveringLetter"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"letter"}}]}}]}}]} as unknown as DocumentNode<GetCoveringLetterQuery, GetCoveringLetterQueryVariables>;

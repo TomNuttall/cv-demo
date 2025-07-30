@@ -62,6 +62,7 @@ export type Query = {
   __typename?: 'Query';
   getCV: Maybe<Cv>;
   getCoveringLetter: Maybe<CoveringLetter>;
+  getMyApplications: Array<Scalars['String']['output']>;
 };
 
 
@@ -222,6 +223,7 @@ export type ProfileResolvers<ContextType = Context, ParentType extends Resolvers
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   getCV: Resolver<Maybe<ResolversTypes['CV']>, ParentType, ContextType, QueryGetCvArgs>;
   getCoveringLetter: Resolver<Maybe<ResolversTypes['CoveringLetter']>, ParentType, ContextType, QueryGetCoveringLetterArgs>;
+  getMyApplications: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
 }>;
 
 export type SkillsResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Skills'] = ResolversParentTypes['Skills']> = ResolversObject<{

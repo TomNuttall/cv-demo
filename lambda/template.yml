@@ -38,3 +38,10 @@ Resources:
           Properties:
             Path: /graphql
             Method: POST
+      Environment:
+        Variables:
+          BUCKET_NAME: ''
+          BUCKET_PREFIX: ''
+          CLERK_PUBLISHABLE_KEY: ''
+          CLERK_SECRET_KEY: ''
+          CLERK_JWT_KEY: ''
