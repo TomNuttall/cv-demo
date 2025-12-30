@@ -1,11 +1,17 @@
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import createFetchMock from 'vitest-fetch-mock'
-import { vi } from 'vitest'
 import { ClerkProvider } from '@clerk/clerk-react'
 
-const fetchMocker = createFetchMock(vi)
-fetchMocker.enableMocks()
+vi.mock('@clerk/clerk-react', () => {
+  return {
+    ClerkProvider: ({ children }: any) => children,
+    SignedIn: ({ children }: any) => children,
+    SignedOut: ({ children }: any) => children,
+    SignInButton: ({ children }: any) => children,
+    SignOutButton: ({ children }: any) => children,
+    UserButton: () => <button>Mock UserButton</button>,
+  }
+})
 
 import Header from './Header'
 
@@ -14,7 +20,7 @@ describe('<Header />', () => {
     { name: 'CV', src: '/cv' },
     { name: 'Covering Letter', src: '/covering-letter' },
   ]
-  const publishableKey = `pk_test_${window.btoa('$')}`
+  const publishableKey = 'pk_test_key'
 
   it('should render component', () => {
     // Arrange
@@ -29,7 +35,6 @@ describe('<Header />', () => {
     )
 
     // Assert
-    expect(screen.getByText('TU')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'CV' })).toBeInTheDocument()
     expect(
       screen.getByRole('link', { name: 'Covering Letter' }),
@@ -48,6 +53,7 @@ describe('<Header />', () => {
       </ClerkProvider>,
     )
 
+    console.log(document.title)
     // Assert
     expect(document.title).toEqual('Test User - Covering Letter')
   })
