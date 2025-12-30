@@ -90,7 +90,7 @@ export class BackendStack extends cdk.Stack {
 
     return new lambda.Function(this, lambdaName, {
       functionName: `lambda-${lambdaName}`,
-      runtime: lambda.Runtime.NODEJS_20_X,
+      runtime: lambda.Runtime.NODEJS_22_X,
       handler: 'index.handler',
       code,
       logGroup,
